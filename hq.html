@@ -280,7 +280,7 @@ footer.ft .ft-n{font-size:11.5px;color:var(--muted);max-width:60ch}
 
   <section class="panel" aria-labelledby="hq-h-xl">
     <h2 id="hq-h-xl">취합 엑셀로 저장</h2>
-    <p class="hint">본사 취합 양식(맨 앞 '요약 대시보드' 그래프 8개 + 1주차 매출실적·KPI, 3주차 중간실적·고객관리, 1인 기준 성과, 1주차·3주차 디자이너 순위)에 매장명과 값을 채워 저장하고, 쓰지 않는 매장 칸은 숨깁니다. 담당자 수는 1주차 회의자료에서 해당월 실매출이 있는 담당자를 세어 넣습니다. 서비스 구분 이름은 1주차 회의자료(계산기의 분류 기준 설정)를 따릅니다.</p>
+    <p class="hint">본사 취합 양식(맨 앞 '요약 대시보드' 그래프 10개 + 1주차 매출실적·KPI·성별, 3주차 중간실적·고객관리, 1인 기준 성과, 1주차·3주차 디자이너 순위)에 매장명과 값을 채워 저장하고, 쓰지 않는 매장 칸은 숨깁니다. 담당자 수는 1주차 회의자료에서 해당월 실매출이 있는 담당자를 세어 넣습니다. 서비스 구분 이름은 1주차 회의자료(계산기의 분류 기준 설정)를 따릅니다.</p>
     <div class="bar">
       <span class="spacer"></span>
       <button class="btn primary" id="hq-xlsx">취합 엑셀 저장</button>
@@ -572,7 +572,7 @@ function hqTotals(P){
     real3,qoq:qBase.length?sumK(qBase,'real')/sumK(qBase,'pReal')-1:null,ach:tBase.length?sumK(tBase,'real')/sumK(tBase,'target'):null,
     dormRate:reg?dorm/reg:null};
 }
-/* ================= 요약 그래프 8개 (엑셀 '요약 대시보드'와 같은 구성) ================= */
+/* ================= 요약 그래프 10개 (엑셀 '요약 대시보드'와 같은 구성) ================= */
 const HC={male:'#3B82F6',female:'#F472B6',blue:'#0D6EFD',prev:'#6B7280',up:'#FF6B6B',down:'#2DD4A0',amber:'#FFB020',svc:['#0D6EFD','#20C997','#FFB020','#A855F7','#0DCAF0','#F472B6','#84CC16','#FB923C','#6366F1','#14B8A6','#ADB5BD']};
 const hcEsc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fP1=v=>v==null||!isFinite(v)?'–':(v*100).toFixed(1)+'%';
@@ -712,7 +712,7 @@ function hqRender(){
     card('3주차 제출',T.n3,` / ${BRANCHES.length||'–'}곳`,H.m3?ymKo(H.m3)+' 1~15일':''),
     card('전체 중간 실매출',fmt(T.real3),'원',`${pill(T.qoq)} 전월 같은 기간 대비`),
     card('전체 목표 달성률',pct(T.ach),'',`목표를 적은 매장 기준 · 휴면 비율 ${pct(T.dormRate)}`)].join('');
-  /* 그래프 8개 */
+  /* 그래프 10개 */
   hqCharts(P,T);
   /* 표 */
   const miss='<td class="na" colspan="%" style="text-align:center">미제출</td>';
